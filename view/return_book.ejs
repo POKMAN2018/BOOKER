@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RETURN BOOK</title>
+	<%- include("bootrap") %>
+</head>
+<body class="bg-dark text-light">
+
+
+<center>
+<div class="d-flex w-50">
+<table class="table bg-light text-dark w-50 mt-5 border rounded">
+  <thead>
+    <tr>
+      <th scope="col">ชื่อหนังสือ</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% Object.values(doc).forEach((docer)=> { %>
+    <tr>
+      <td><%= docer %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<table class="table bg-light text-dark w-50 mt-5 border rounded">
+  <thead>
+    <tr>
+      <th scope="col">ดูหนังสือ</th>
+      <th scope="col">ลบออก</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Object.values(docs).forEach((docer)=> { %>
+    <tr>
+      <td><a class="btn btn-primary" href="/view_book/<%= docer %>">ดูหนังสือ</a></td>
+      <td><a class="btn btn-danger" href="/del_book/<%= docer %>">ลบ</a></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+</div>
+<a href="/home" class="btn btn-danger mt-5">กลับ</a>
+
+</center>
+
+
+	
+
+
+</body>
+</html>

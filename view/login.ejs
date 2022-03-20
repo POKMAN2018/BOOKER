@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LOGIN</title>
+	<%- include("bootrap") %>
+</head>
+<body class="bg-dark text-light">
+
+	<center>
+
+<br>
+<br>
+		<h1 class="display-5">ล๊อกอิน</h1>
+<br>
+<h5 class="text-dark bg-danger w-25 rounded p-1"><%= err %></h5>
+<form action="/login" method="post" class="w-25 border border-2 p-5 rounded rounded-2">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">อีเมลล์</label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+</div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">รหัสผ่าน</label>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+   <div class="mb-3 form-check d-flex flex-row justify-content-start">
+    <input name="remem" type="checkbox" class="form-check-input" id="exampleCheck1" value="true"><span class="mx-1">จดจำฉัน</span>
+  </div>
+  <button type="submit" class="btn btn-warning">เข้าสูระบบ</button>
+  <br>
+  <a href="/register" class="btn btn-danger mt-4">สมัครสมาชิก</a>
+    <br>
+      <br>
+  <div class="pt-4 border-top border-2 border-light">
+	<a href="/auth/facebook" class="btn btn-primary">FACEBOOK</a>
+	<a href="/auth/google" class="btn btn-light text-dark">GOOGLE</a>
+</div>
+</form>
+
+</center>
+
+</body>
+<script type="text/javascript" src="/js/f_login.js"></script>
+</html>

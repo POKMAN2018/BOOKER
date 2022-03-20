@@ -1,0 +1,18 @@
+<header style="background: black;" class="pt-2 pb-2 text-light  p-0 m-0 border-bottom border-2 d-flex flex-row justify-content-around align-items-center">
+	<div class="d-flex flex-row">
+		<% if (!name) { %>
+			<a href="/login" class="text-warning">LOGIN</a>
+			<a href="/login" class="text-light">REGISTER</a>
+		<% }else{ %>
+				<button class="btn btn-primary h2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+					<%= name %>
+				</button>
+		<% } %>
+		
+	</div>
+	<div>
+		<a href="/home" class="text-decoration-none text-light m-0 mx-2 ms-2 h5">HOME</a>
+		<a href="/help" class="text-decoration-none text-light m-0 mx-2 ms-2 h5">HELP</a>
+		<a href="/contact" class="text-decoration-none text-light m-0 mx-2 ms-2 h5">CONTACT</a>
+	</div>
+</header>

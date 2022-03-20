@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VIEW BOOK</title>
+	<%- include("bootrap") %>
+</head>
+<body class="bg-dark text-light">
+
+
+<center>
+	
+<div class="mt-5 card border border-primary text-dark" style="width: 18rem;">
+  <img src="/images/<%= doc.pic %>.jpeg" class="card-img-top" alt="...">
+  <div class="card-body d-flex flex-column justify-content-start align-items-start">
+    <h5 class="card-title"><%= doc.title %></h5>
+    <h6 class="card-title">วันที่วาง : <%= doc.date %></h6>
+    <% if (!doc.auth) { %>
+    	<h6 class="card-text">ให้ยืมโดย : ไม่ใด้ระบุ</h6>
+    <% }else{ %>
+    	<h6 class="card-text">ให้ยืมโดย : <%= doc.auth %> </h6>
+    <% } %>
+    	<h6 class="card-text"><a href="/tag/<%= doc.tag %>" class="text-decoration-none">แท็ก : <%= doc.tag %> </a></h6>
+    	<h6 class="card-text">การเข้าชม : <%= view %> ครั้ง</h6>
+    <% if (doc.status) { %>
+    	<p class="text-danger">*หนังสือไม่ว่าง*</p><span class="text-dark">คุณ <%= doc.user %> กำลังอ่าน</span>
+    	<% if (doc.user == user) { %>
+    		<a href="/returning/<%= doc._id %>" class="btn btn-success mt-2 w-100">คืนหนังสือ</a>
+    	<% } %>
+    	
+    <% }else{ %>
+    	<a href="/add/<%= doc._id %>" class="btn btn-primary w-100">ยืมหนังสือ</a>
+    <% } %>
+    
+
+  </div>
+</div>
+
+<a href="/home" class="btn btn-danger mt-4">กลับ</a>
+<a href="/reading" class="btn btn-warning mt-4">กำลังอ่าน</a>
+<button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+คอมเม้น
+</button>
+
+
+
+<div class="w-25  rounded rounded-2 mt-5">
+<div class="mb-2 justify-content-start d-flex flex-row border-bottom border-3 pb-2">
+	<p class="text-center p-0 m-0">COMMENT <%= doc.comment.length %></p>
+</div>
+<% Object.values(doc.comment).forEach((ment)=> { %>
+<div class="alert alert-warning  w-100 d-flex flex-row justify-content-start p-0 pt-1 px-2" role="alert">
+	<p class="text-dark"><%= ment %></p>
+</div>
+<% }) %>
+</div>
+</center>
+
+
+
+<center>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border">
+      <div class="modal-header bg-dark text-light">
+        <h5 class="modal-title" id="exampleModalLabel">คอมเม้น</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-dark">
+        
+<form action="/view_book/<%= doc._id %>" method="post" class="">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">COMMENT</label>
+    <input type="text" name="comment" class="form-control mb-3 w-75" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="COMMENT">
+  <button type="submit" class="btn btn-primary">ส่ง</button>
+</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+</body>
+</html>

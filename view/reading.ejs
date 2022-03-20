@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>READING</title>
+	<%- include("bootrap") %>
+</head>
+<body class="bg-dark text-light">
+
+
+<center>
+<div class="d-flex justify-content-center">
+
+<table class="table bg-light text-dark w-25 mt-5 border rounded">
+  <thead>
+    <tr>
+      <th scope="col">ชื่อหนังสือ</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  	<% Object.values(doc).forEach((docer)=> { %>
+  	<tr>
+      <td><%= docer %></td>
+    </tr>
+    <% }) %>
+
+  </tbody>
+</table>
+<table class="table bg-light text-dark w-25 mt-5 border rounded">
+  <thead>
+    <tr>
+      <th scope="col">ดูหนังสือ</th>
+      <th scope="col">คืนหนังสือ</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  	<% Object.values(store_id).forEach((docer)=> { %>
+  	<tr>
+      <td><a href="/view_book/<%= docer %>" class="btn btn-primary">ดูหนังสือ</a></td>
+      <td><a href="/returning/<%= docer %>" class="btn btn-success">คืนหนังสือ</a></td>
+    </tr>
+    <% }) %>
+
+  </tbody>
+</table>
+
+
+</div>
+
+<a href="/home" class="btn btn-danger mt-5">กลับ</a>
+</center>
+
+
+	
+
+	
+
+
+</body>
+</html>

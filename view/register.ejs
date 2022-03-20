@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>REGISTER</title>
+	<%- include("bootrap") %>
+</head>
+<body class="bg-dark text-light">
+	<center>
+
+<br>
+<br>
+		<h1 class="display-5">สมัครสมาชิก</h1>
+<br>
+
+<h5 class="text-dark bg-danger w-25 rounded p-1"><%= err %></h5>
+
+
+<form action="/register" method="post" class="w-25 border border-2 p-5 rounded rounded-2">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">อีเมลล์</label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">ชื่อผู้ใช้</label>
+    <input name="username" type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">รหัสผ่าน</label>
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">สมัคร</button>
+  <br>
+  <a href="/login" class="btn btn-danger mt-4">กลับหน้า ล๊อกอิน</a>
+</form>
+</center>
+
+</body>
+</html>

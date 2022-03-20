@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FIND TAG</title>
+	<%- include("bootrap") %>
+</head>
+<body class="bg-dark text-light">
+<center>
+<h1 class="display-6 text-center mt-5"><%= tag %></h1>
+
+<div  style="display: grid;grid-template-columns: auto auto auto;border-top:2px solid white" class="w-75" id="all_book">
+
+<% Object.values(doc).forEach((doc)=> { %>
+		<div class="w-75 d-flex flex-column justify-content-between rounded text-dark bg-light m-4">
+		<img src="/images/<%= doc.pic %>.jpeg" class="w-100">
+		<h2><%= doc.title %></h2>
+		<a href="/view_book/<%= doc._id %>" class="btn btn-primary">VIEW MORE</a>
+		</div>
+<% }) %>
+</center>
+
+</body>
+</html>

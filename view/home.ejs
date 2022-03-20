@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HOME</title>
+	<%- include("bootrap") %>
+	<script type="text/javascript" src="/js/f_home.js"></script>
+</head>
+<style type="text/css">
+	body::-webkit-scrollbar {
+		width: 0px;
+	}
+</style>
+<body class="bg-dark text-light">
+
+<!--Navbar-->
+<%- include("header") %>
+
+<center>
+<h5 class="text-dark bg-danger w-25 rounded p-1 mt-2"><%= err %></h5>
+
+
+
+<div  style="display: grid;grid-template-columns: 1fr 1fr 1fr 1fr;grid-column-gap: -50px;
+grid-row-gap: -50px;background: black;" class="border  border-2 border-secondary mt-5 w-75" id="all_book">
+
+<% Object.values(doc).forEach((doc)=> { %>
+		<div class="w-75 d-flex flex-column justify-content-between rounded text-dark bg-light m-4 border border-2 border-secondary">
+		<img src="/images/<%= doc.pic %>.jpeg" class="w-100">
+		<% if (doc.date == today) { %>
+<h2 class="h6 mt-2"><%= doc.title %><span class="badge bg-danger mx-2">NEW</span></h2>
+		<% }else{ %>
+<h2 class="h6 mt-2"><%= doc.title %></h2>
+		<% } %>
+		
+
+		<a href="/view_book/<%= doc._id %>" class="btn btn-primary">VIEW MORE</a>
+		</div>
+<% }) %>
+</center>
+
+
+
+<div class="offcanvas offcanvas-start text-light border-right border-2 bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+  	<center>
+  	<div class="d-flex flex-column justify-content-center align-items-center w-50">
+      <% if (info.face_id != "none") { %>
+        <img src="<%= info.profile_path %>" class="w-100 border">
+      <% }else{ %>
+        <img src="/profile/<%= info.profile_path %>.jpeg" class="w-100 border">
+     <% } %>
+  	
+    <h5 class="offcanvas-title mt-2" id="offcanvasExampleLabel"><%= name %></h5>
+	</div>
+	</center>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex flex-column">
+<a href="/my_book" class="btn bg-primary bg-secondary mt-2 text-light d-flex flex-row justify-content-between  align-items-center">
+<p class="m-0 p-0">หนังสือของฉัน</p><p class="m-0 p-0"></p>
+</a>
+<a href="/reading" class="btn bg-primary bg-primary mt-2 text-light d-flex flex-row justify-content-between  align-items-center">
+<p class="m-0 p-0">กำลังอ่าน</p><p class="m-0 p-0"><%= (info.store).length %></p>
+</a>
+<a href="/return_book" class="btn bg-primary bg-success mt-2 text-light d-flex flex-row justify-content-between  align-items-center">
+<p class="m-0 p-0">คืนหนังสือแล้ว</p><p class="m-0 p-0"><%= (info.return_book).length %></p>
+</a>
+<button type="button" class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+อัพโหลดหนังสือ
+</button>
+<!-- Button trigger modal -->
+<% if (info.face_id != "none") { %>
+
+<% } else { %>
+  <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#asd">
+  อัพรูปโปรไฟล์
+  </button>
+<% } %>
+
+
+
+
+<a href="/logout" class="btn btn-danger mt-3">ล๊อกเอ้า</a>
+    </div>
+  </div>
+</div>
+
+
+<!--upload book-->
+
+
+<!-- Modal -->
+<div class="modal fade text-dark " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/home" method="post" enctype="multipart/form-data">
+        	 <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">ภาพ</label>
+    <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="pic">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">ชื่อหนังสือ</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="title">
+  </div>
+    <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">TAGE</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="tag">
+  </div>
+  <button type="submit" class="btn btn-primary">ส่ง</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</butto>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---->
+
+<center>
+</div>
+</center>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="asd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-dark">
+        <h5 class="modal-title" id="exampleModalLabel text-dark">UPLOAD PICTURE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/home?_method=PUT" method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label text-dark">ภาพ</label>
+    <input type="file" name="profile" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">อัพภาพ</button>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
