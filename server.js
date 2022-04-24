@@ -3,6 +3,8 @@ let app = require("./middleware").app
 let passport = require("./model/facebook_login")
 require("dotenv").config()
 
+let PORT = process.env.PORT || 3000
+
 //router
 //login
 app.get("/login",require("./function/all_function").islogin,require("./router/login").get)
@@ -61,6 +63,6 @@ app.get("/tag/:id",require("./function/all_function").notlogin,require("./router
 //logout
 app.get("/logout",require("./router/logout").get)
 
-app.listen(process.env.PORT || 3000,()=> {
-	console.log("SERVER START AT PORT 3000")
+app.listen(PORT,()=> {
+	console.log(`SERVER START AT PORT ${PORT}`)
 })

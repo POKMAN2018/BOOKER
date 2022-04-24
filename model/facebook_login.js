@@ -1,6 +1,8 @@
-let passport = require("../middleware").passport
+﻿let passport = require("../middleware").passport
 let facebookligee = require("../module/all_module").facebookligee
 let User = require("./user_model")
+
+let PORT = process.env.PORT || 3000
 
 passport.serializeUser(function(user, done) {
   done(null, user) //อยากส่งอะไรไปเก็บใน session
@@ -12,7 +14,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new facebookligee({
 	clientID: "386395479923098",
     clientSecret: "b5c7c8307575ac3d734c0270a7e6ed07",
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: `http://localhost:4000/auth/facebook/callback`,
     profileFields: ['id', 'displayName', 'photos', 'emails']
 },
 function(accessToken, refreshToken, profile, done) {
