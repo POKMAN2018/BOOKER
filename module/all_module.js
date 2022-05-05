@@ -8,7 +8,7 @@ let session = require("express-session")({
 let methodOverride = require("method-override")
 let fileUpload = require('express-fileupload');
 let mongoose = require("mongoose")
-mongoose.connect("mongodb+srv://pokman2018:lion4333@cluster0.0q5we.mongodb.net/BOOK?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://@cluster0.0q5we.mongodb.net/BOOK?retryWrites=true&w=majority")
 
 //passport
 let passport = require("passport")
